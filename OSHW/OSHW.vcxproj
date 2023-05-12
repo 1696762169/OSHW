@@ -128,6 +128,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Buffer.cpp" />
+    <ClCompile Include="source\BufferManager.cpp" />
+    <ClCompile Include="source\DiskManager.cpp" />
+    <ClCompile Include="source\FileManager.cpp" />
+    <ClCompile Include="source\Inode.cpp" />
+    <ClCompile Include="source\InodeTable.cpp" />
+    <ClCompile Include="source\OpenFile.cpp" />
+    <ClCompile Include="source\OpenFileTable.cpp" />
+    <ClCompile Include="source\SuperBlock.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Buffer.h" />
+    <ClInclude Include="include\BufferManager.h" />
+    <ClInclude Include="include\DiskManager.h" />
+    <ClInclude Include="include\FileManager.h" />
+    <ClInclude Include="include\Inode.h" />
+    <ClInclude Include="include\InodeTable.h" />
+    <ClInclude Include="include\OpenFile.h" />
+    <ClInclude Include="include\OpenFileTable.h" />
+    <ClInclude Include="include\SuperBlock.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
