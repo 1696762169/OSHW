@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 /**
  * \brief 文件缓存块结构
  */

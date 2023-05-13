@@ -1,6 +1,8 @@
-#pragma once
-#include <string>
+﻿#pragma once
 #include "Inode.h"
+#include <filesystem>
+#include <Windows.h>
+namespace fs = std::filesystem;
 
 /**
  * \brief img文件操作类
@@ -20,11 +22,23 @@ public:
 	static constexpr int INODE_PER_SECTOR = SECTOR_SIZE / sizeof(DiskInode);	// 每个磁盘块可以存放的外存Inode数
 	static constexpr int INODE_START_SECTOR = SUPER_BLOCK_SECTOR + 2;	// 外存Inode区位于磁盘上的起始扇区号
 	static constexpr int INODE_SIZE = DATA_START_SECTOR - INODE_START_SECTOR;	// 外存Inode区占用的盘块数
-
-	static std::string imgPath;	// img文件路径
-
 public:
-	static void Init();	// 格式化img文件
-	static void Read(const char* content, int size, int offset);	// 从img文件读取内容到内存
-	static void Write(const char* content, int size, int offset);	// 将内存中的内容写入img文件
+	explicit DiskManager(const std::filesystem::path& imgPath);
+	~DiskManager();
+
+	void Init(const bool forceCreate);	// 初始化DiskManager状态 完成文件映射
+	void Read(char* content, int size, int offset) const;	// 从img文件读取内容到内存（需要保证content指向的空间足够大）
+	void Write(const void* content, int size, int offset) const;	// 将内存中的内容写入img文件
+
+private:
+	void CreateDisk();	// 格式化img文件
+
+private:
+	const std::filesystem::path m_ImgPath;	// img文件路径
+	bool m_NeedFormatting;	// 是否需要格式化img文件
+
+	HANDLE m_FileHandle;	// img文件句柄
+	HANDLE m_MappingHandle;	// img文件映射句柄
+
+	char* m_Ptr;	// img文件映射指针
 };
