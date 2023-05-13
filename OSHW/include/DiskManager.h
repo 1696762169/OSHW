@@ -31,7 +31,7 @@ public:
 	void Write(const void* content, int size, int offset) const;	// 将内存中的内容写入img文件
 
 private:
-	void CreateDisk();	// 格式化img文件
+	static void CreateDisk();	// 格式化img文件
 
 private:
 	const std::filesystem::path m_ImgPath;	// img文件路径

@@ -75,7 +75,6 @@ void DiskManager::Write(const void * const content, const int size, const int of
 void DiskManager::CreateDisk()
 {
 	// 初始化超级块
-	auto sb = std::make_unique<SuperBlock>();
-	sb->Init();
-	Write(sb.get(), sizeof(SuperBlock), SUPER_BLOCK_SECTOR * SECTOR_SIZE);
+	const auto sb = SuperBlock::Init();
+	sb->Update();
 }
